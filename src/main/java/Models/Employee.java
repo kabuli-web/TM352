@@ -8,13 +8,13 @@ public class Employee {
     private String name;
     private String username;
     private String password;
-    private List<Transaction> transactions;
-    public Employee(String name, String username, String password, List<Transaction> transactions){
+
+    public Employee(String name, String username, String password){
         this.name = name;
         this.username = username;
         this.Id = UUID.randomUUID().toString();
         this.password = password;
-        this.transactions = transactions;
+
     }
 
     public String getName() {
@@ -39,28 +39,5 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    public Boolean addTransactions(Transaction transaction){
-        transactions.add(transaction);
-        return true;
-    }
-    public Boolean removeTransactions(Transaction transaction){
-        Boolean done = false;
-        for(Transaction trans : transactions){
-            if(trans.getId() == transaction.getId()){
-                done = true;
-                transactions.remove(trans);
-            }
-        }
-        return done;
     }
 }

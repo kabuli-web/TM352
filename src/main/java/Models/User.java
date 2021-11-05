@@ -8,8 +8,8 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private List<Transaction> transactions;
-    public User(String name, String username, String password, List<Transaction> transactions){
+    private List<String> transactions;
+    public User(String name, String username, String password, List<String> transactions){
         this.name = name;
         this.username = username;
         this.Id = UUID.randomUUID().toString();
@@ -41,26 +41,27 @@ public class User {
         this.password = password;
     }
 
-    public List<Transaction> getTransactions() {
+    public List<String> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
+    public void setTransactions(List<String> transactions) {
         this.transactions = transactions;
     }
 
-    public Boolean addTransactions(Transaction transaction){
+    public Boolean addTransactions(String transaction){
         transactions.add(transaction);
         return true;
     }
-    public Boolean removeTransactions(Transaction transaction){
+    public Boolean removeTransactions(String transaction){
         Boolean done = false;
-        for(Transaction trans : transactions){
-            if(trans.getId() == transaction.getId()){
+        for(String trans : transactions){
+            if(trans == transaction){
                 done = true;
                 transactions.remove(trans);
             }
         }
         return done;
     }
+
 }

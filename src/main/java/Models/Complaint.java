@@ -6,10 +6,11 @@ public class Complaint {
     private String Id;
     private String Title;
     private String Message;
-
+    private Boolean ResolvedStatus = false;
     public Complaint(String title, String message) {
         Title = title;
         Message = message;
+
         Id = UUID.randomUUID().toString();
     }
 
@@ -31,5 +32,13 @@ public class Complaint {
 
     public String getId() {
         return Id;
+    }
+
+    public Boolean getResolvedStatus() {
+        return ResolvedStatus;
+    }
+
+    public void setResolvedStatus(Boolean resolvedStatus) {
+        ResolvedStatus = resolvedStatus;
     }
 }

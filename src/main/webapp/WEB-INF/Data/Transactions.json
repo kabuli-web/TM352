@@ -1,15 +1,14 @@
-{
-  "Transactions" : [
+ [
     {
       "Id": "asdascoijaeiodfmc",
       "title": "Transaction 1",
       "complaints": [
         {
           "Id": "hahahah",
+          "title": "complaint 1",
           "Message": "My transactions was not authorized",
           "ResolvedStatus": false
         }
       ]
     }
   ]
-}
