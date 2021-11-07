@@ -7,7 +7,10 @@
   <groupId>org.example</groupId>
   <artifactId>ComplaintApp</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+    <modules>
+        <module>EmployeeApp</module>
+    </modules>
+    <packaging>pom</packaging>
 
   <name>ComplaintApp Maven Webapp</name>
   <!-- FIXME change it to the project's website -->

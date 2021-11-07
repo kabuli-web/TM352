@@ -3,10 +3,10 @@ package Models;
 import java.util.UUID;
 
 public class Complaint {
-    private String Id;
-    private String title;
-    private String message;
-    private Boolean resolvedStatus = false;
+    public String Id;
+    public String title;
+    public String message;
+    public boolean resolvedStatus ;
     public Complaint(String title, String message) {
         this.title = title;
         this.message = message;

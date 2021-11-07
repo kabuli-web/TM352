@@ -1,22 +1,30 @@
 package RestApp.Employee;
 
+//import Deserializer.ComplaintD;
+import Deserializer.ComplaintD;
 import Deserializer.TransactionD;
 import Models.Complaint;
 import Models.Employee;
 import Models.Transaction;
+//import Serializers.ComplaintS;
+import Serializers.ComplaintS;
 import Serializers.TransactionS;
 import Services.TransactionRepo;
 import Views.UserLogin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class EmployeeComplaints extends HttpServlet {
     private TransactionRepo transactionRepo = new TransactionRepo();
@@ -25,7 +33,10 @@ public class EmployeeComplaints extends HttpServlet {
     public EmployeeComplaints(){
         gsonBuilder.registerTypeAdapter(Transaction.class,new TransactionS());
         gsonBuilder.registerTypeAdapter(Transaction.class,new TransactionD());
-        gson = gsonBuilder.create();
+        gsonBuilder.registerTypeAdapter(Complaint.class,new ComplaintS());
+        gsonBuilder.registerTypeAdapter(Complaint.class,new ComplaintD());
+
+        gson = gsonBuilder.setPrettyPrinting().create();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
@@ -80,26 +91,42 @@ public class EmployeeComplaints extends HttpServlet {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"Counldnt find complaint");
                 return;
             }
-            Complaint reqComplaint = gson.fromJson(request.getReader(),Complaint.class);
+            BufferedReader in = request.getReader();
+            String inputLine;
+            StringBuffer resp = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                resp.append(inputLine);
+            }
+            in.close();
+            String test = resp.toString();
+            System.out.println(resp.toString());
+            Complaint reqComplaint;
+
+             reqComplaint = gson.fromJson(resp.toString(),Complaint.class);
+
+
+
             Transaction complaintTransaction = transactions.stream().filter(transaction -> transaction.getComplaints().contains(complaint)).findFirst().orElse(null);
             if(complaintTransaction==null){
                 response.sendError(HttpServletResponse.SC_NOT_FOUND,"complaints parent transaction could not be found");
                 return;
             }
             reqComplaint.setId(complaintId);
-            Boolean removed  = complaintTransaction.getComplaints().removeIf(complaint1 -> complaintId.equals(complaint1.getId()));
-            if(removed){
-                complaintTransaction.addComplaints(reqComplaint);
-                Transaction updatedtransaction = transactionRepo.updateTransactionComplaints(complaintTransaction.getId(), complaintTransaction.getComplaints(), getServletContext());
-                if(updatedtransaction==null){
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"couldnt update transaction");
-                    return;
-                }
-                output(response,gson.toJson(reqComplaint),201);
+            complaintTransaction.getComplaints().removeIf(complaint1 -> complaintId.equals(complaint1.getId()));
+
+            complaintTransaction.addComplaints(reqComplaint);
+            Transaction updatedtransaction = transactionRepo.updateTransactionComplaints(complaintTransaction.getId(), complaintTransaction.getComplaints(), getServletContext());
+            if(updatedtransaction==null){
+                System.out.println("repo returned null");
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"couldnt update transaction");
                 return;
             }
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Couldnt update complaint");
+            output(response,gson.toJson(reqComplaint),201);
             return;
+
+//            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Couldnt update complaint");
+//            return;
         }
         response.sendError(HttpServletResponse.SC_BAD_REQUEST,"You have to add complaintId to header");
         return;

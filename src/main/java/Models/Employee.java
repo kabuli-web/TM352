@@ -14,7 +14,6 @@ public class Employee {
         this.username = username;
         this.Id = UUID.randomUUID().toString();
         this.password = password;
-
     }
 
     public String getName() {
@@ -39,5 +38,13 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 }

@@ -8,9 +8,17 @@
     <filter-name>UserMiddle</filter-name>
     <filter-class>Middlewares.UserJwtVerification</filter-class>
   </filter>
+  <filter>
+    <filter-name>EmployeeMiddle</filter-name>
+    <filter-class>Middlewares.EmployeeJwtVerification</filter-class>
+  </filter>
   <filter-mapping>
     <filter-name>UserMiddle</filter-name>
     <url-pattern>/User/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>EmployeeMiddle</filter-name>
+    <url-pattern>/Employee/*</url-pattern>
   </filter-mapping>
   <servlet>
     <servlet-name>main</servlet-name>
@@ -23,6 +31,14 @@
   <servlet>
     <servlet-name>UserAuth</servlet-name>
     <servlet-class>RestApp.UserApi.UserAuth</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmployeeAuth</servlet-name>
+    <servlet-class>RestApp.Employee.EmployeeAuth</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmployeeComplaints</servlet-name>
+    <servlet-class>RestApp.Employee.EmployeeComplaints</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>UserTransactions</servlet-name>
@@ -51,5 +67,13 @@
   <servlet-mapping>
     <servlet-name>UserTransactionComplaints</servlet-name>
     <url-pattern>/User/Transactions/Complaints</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeAuth</servlet-name>
+    <url-pattern>/EmployeeAuth</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmployeeComplaints</servlet-name>
+    <url-pattern>/Employee/Complaints</url-pattern>
   </servlet-mapping>
 </web-app>

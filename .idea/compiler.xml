@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="352_github" />
         <module name="ComplaintApp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EmployeeApp" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
