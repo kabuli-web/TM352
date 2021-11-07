@@ -4,30 +4,33 @@ import java.util.UUID;
 
 public class Complaint {
     private String Id;
-    private String Title;
-    private String Message;
-    private Boolean ResolvedStatus = false;
+    private String title;
+    private String message;
+    private Boolean resolvedStatus = false;
     public Complaint(String title, String message) {
-        Title = title;
-        Message = message;
-
+        this.title = title;
+        this.message = message;
         Id = UUID.randomUUID().toString();
+    }
+    public Complaint(){}
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public void setMessage(String message) {
-        Message = message;
+        this.message = message;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getId() {
@@ -35,10 +38,10 @@ public class Complaint {
     }
 
     public Boolean getResolvedStatus() {
-        return ResolvedStatus;
+        return resolvedStatus;
     }
 
     public void setResolvedStatus(Boolean resolvedStatus) {
-        ResolvedStatus = resolvedStatus;
+        this.resolvedStatus = resolvedStatus;
     }
 }

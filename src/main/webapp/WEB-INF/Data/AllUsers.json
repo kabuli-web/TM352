@@ -4,7 +4,7 @@
     "name": "Abdullah",
     "username":"abdullah",
     "password": "12345678m",
-    "Transactions" : [
+    "transactions" : [
       "trans1",
       "trans2"
     ]

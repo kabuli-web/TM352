@@ -1,14 +1,37 @@
- [
-    {
-      "Id": "asdascoijaeiodfmc",
-      "title": "Transaction 1",
-      "complaints": [
-        {
-          "Id": "hahahah",
-          "title": "complaint 1",
-          "Message": "My transactions was not authorized",
-          "ResolvedStatus": false
-        }
-      ]
-    }
-  ]
+[
+  {
+    "Id": "trans1",
+    "title": "Transaction 1",
+    "complaints": [
+      {
+        "Id": "hahahah",
+        "title": "complaint 1",
+        "message": "My transactions was not authorized",
+        "resolvedStatus": false
+      }
+    ]
+  },
+  {
+    "Id": "trans2",
+    "title": "Transaction 2",
+    "complaints": [
+      {
+        "Id": "asdasd",
+        "title": "complaint 1",
+        "message": "My transactions was not authorized",
+        "resolvedStatus": false
+      },
+      {
+        "title": "narrow",
+        "message": "My nona was not authorized twice",
+        "resolvedStatus": false
+      },
+      {
+        "Id": "d0cdf46b-20a2-4511-8eec-6993c482b056",
+        "title": "narrow",
+        "message": "My nona was not authorized twice",
+        "resolvedStatus": false
+      }
+    ]
+  }
+]

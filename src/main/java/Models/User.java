@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,15 +9,17 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private List<String> transactions;
-    public User(String name, String username, String password, List<String> transactions){
+    private ArrayList<String> transactions;
+    public User(String name, String username, String password, ArrayList<String> transactions){
         this.name = name;
         this.username = username;
         this.Id = UUID.randomUUID().toString();
         this.password = password;
         this.transactions = transactions;
     }
+    public  User(){
 
+    }
     public String getName() {
         return name;
     }
@@ -45,7 +48,7 @@ public class User {
         return transactions;
     }
 
-    public void setTransactions(List<String> transactions) {
+    public void setTransactions(ArrayList<String> transactions) {
         this.transactions = transactions;
     }
 
@@ -64,4 +67,11 @@ public class User {
         return done;
     }
 
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
 }

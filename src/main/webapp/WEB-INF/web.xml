@@ -4,6 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>UserMiddle</filter-name>
+    <filter-class>Middlewares.UserJwtVerification</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserMiddle</filter-name>
+    <url-pattern>/User/*</url-pattern>
+  </filter-mapping>
   <servlet>
     <servlet-name>main</servlet-name>
     <servlet-class>RestApp.main</servlet-class>
@@ -16,6 +24,14 @@
     <servlet-name>UserAuth</servlet-name>
     <servlet-class>RestApp.UserApi.UserAuth</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UserTransactions</servlet-name>
+    <servlet-class>RestApp.UserApi.UserTransactions</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserTransactionComplaints</servlet-name>
+    <servlet-class>RestApp.UserApi.UserTransactionComplaints</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>main</servlet-name>
     <url-pattern>/*</url-pattern>
@@ -26,6 +42,14 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>User</servlet-name>
-    <url-pattern>/User</url-pattern>
+    <url-pattern>/User/Profile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserTransactions</servlet-name>
+    <url-pattern>/User/Transactions</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserTransactionComplaints</servlet-name>
+    <url-pattern>/User/Transactions/Complaints</url-pattern>
   </servlet-mapping>
 </web-app>
